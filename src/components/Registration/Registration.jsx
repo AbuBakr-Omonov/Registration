@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 const Registration = () => {
     const nameRef = useRef(null)
@@ -9,7 +9,11 @@ const Registration = () => {
     const [registeredId, satId] = useState("")
     const [phone, satphone] = useState("")
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(JSON.parse( localStorage.getItem("data"))|| [])
+
+    useEffect(() => {
+        localStorage.setItem("data",JSON.stringify(data))
+    },[data])
 
     const handleSubmit = (e) => {
         e.preventDefault()
